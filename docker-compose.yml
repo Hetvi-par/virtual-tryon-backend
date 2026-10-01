@@ -20,10 +20,6 @@ services:
     environment:
       DATABASE_URL: postgresql+psycopg://tryon:tryon@db:5432/tryon
       CORS_ORIGINS: http://localhost:5173
-      CATALOG_PATH: /app/catalog.json
-    volumes:
-      # expects the frontend repo cloned next to this one
-      - ../frontend/public/catalog.json:/app/catalog.json:ro
     ports:
       - "8001:8000"
     depends_on:

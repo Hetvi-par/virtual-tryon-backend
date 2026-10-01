@@ -4,22 +4,16 @@ FastAPI + Postgres service that serves the product catalog and model photos for 
 [frontend](https://github.com/Hetvi-par/virtual-tryon-frontend).
 
 ```
-server.py        API routes
-database.py      DB connection + tables
-seed.py          loads products, shades and model photos
-Dockerfile       API image
-docker-compose.yml  Postgres (and optionally the API)
+server.py            API routes
+database.py          DB connection + tables (SQLAlchemy)
+data/catalog.json    products and shades the seed loads
+scripts/seed.py      loads products, shades and model photos
+Dockerfile           API image
+docker-compose.yml   Postgres (and optionally the API)
 ```
 
-The seed reads `../frontend/public/catalog.json`, so clone both repos side by side:
-
-```
-virtual-tryon/
-├── frontend/   (virtual-tryon-frontend)
-└── backend/    (virtual-tryon-backend)
-```
-
-Set `CATALOG_PATH` to point somewhere else.
+`data/catalog.json` is a copy of the frontend's `public/catalog.json` (the frontend's offline fallback).
+When you change products, update both. Set `CATALOG_PATH` to seed from another file.
 
 ## Run locally
 
@@ -29,7 +23,7 @@ python -m venv .venv
 .venv\Scripts\activate
 pip install -r requirements.txt
 copy .env.example .env
-python seed.py --reset
+python scripts/seed.py --reset
 python -m uvicorn server:app --port 8001
 ```
 

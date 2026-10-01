@@ -1,7 +1,11 @@
 """Fill an empty database with the starter catalog. Safe to run more than once.
 
-The catalog comes from frontend/public/catalog.json, the same file the frontend falls back to
-when the API is down (override with CATALOG_PATH). Run with --reset to drop and recreate all tables first.
+Usage (from the backend folder):
+    python scripts/seed.py            seed empty tables
+    python scripts/seed.py --reset    drop and recreate all tables first
+
+The catalog comes from data/catalog.json (override with CATALOG_PATH). Keep it in step with the
+frontend's public/catalog.json, which the frontend falls back to when the API is down.
 """
 
 import json
@@ -9,13 +13,14 @@ import os
 import sys
 from pathlib import Path
 
-from sqlalchemy import select
+ROOT = Path(__file__).resolve().parent.parent
+sys.path.insert(0, str(ROOT))   # so `database` imports when run as scripts/seed.py
 
-from database import Base, ModelPhoto, Product, SessionLocal, Shade, engine, init_db
+from sqlalchemy import select  # noqa: E402
 
-CATALOG = Path(os.getenv(
-    "CATALOG_PATH", Path(__file__).resolve().parent.parent / "frontend" / "public" / "catalog.json"
-))
+from database import Base, ModelPhoto, Product, SessionLocal, Shade, engine, init_db  # noqa: E402
+
+CATALOG = Path(os.getenv("CATALOG_PATH", ROOT / "data" / "catalog.json"))
 MODEL_PHOTOS = [(f"Model {i}", f"/models/model{i}.jpg") for i in range(1, 7)]
 
 

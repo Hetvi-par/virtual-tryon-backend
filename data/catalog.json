@@ -1,0 +1,93 @@
+[
+  { "id": "velvet", "type": "lipstick", "name": "Velvet Matte Lipstick", "finish": "Matte", "price": 24, "shades": [
+    { "name": "Ruby Red", "code": "VM01", "hex": "#C1122F" }, { "name": "Brick", "code": "VM02", "hex": "#A23A2E" },
+    { "name": "Deep Wine", "code": "VM03", "hex": "#6E1E3A" }, { "name": "Mocha Nude", "code": "VM04", "hex": "#9C6B57" },
+    { "name": "Terracotta", "code": "VM05", "hex": "#B85C45" }, { "name": "Rosewood", "code": "VM06", "hex": "#B4646B" } ] },
+  { "id": "satinlip", "type": "lipstick", "name": "Satin Lipstick", "finish": "Satin", "price": 26, "shades": [
+    { "name": "Rose Nude", "code": "SL01", "hex": "#C98A80" }, { "name": "Peony", "code": "SL02", "hex": "#E28AA0" },
+    { "name": "Berry", "code": "SL03", "hex": "#7B2452" }, { "name": "Dusty Rose", "code": "SL04", "hex": "#C07A82" },
+    { "name": "Coral Pink", "code": "SL05", "hex": "#E8747C" }, { "name": "Plum", "code": "SL06", "hex": "#7A3A5C" } ] },
+  { "id": "liquidlip", "type": "lipstick", "name": "Liquid Lipstick", "finish": "Liquid", "price": 22, "shades": [
+    { "name": "Cherry", "code": "LL01", "hex": "#A61B3A" }, { "name": "Nude Beige", "code": "LL02", "hex": "#C29A86" },
+    { "name": "Mauve", "code": "LL03", "hex": "#A86C80" }, { "name": "Burgundy", "code": "LL04", "hex": "#701F33" },
+    { "name": "Hot Pink", "code": "LL05", "hex": "#E0407A" }, { "name": "Brown Sugar", "code": "LL06", "hex": "#8E5B48" } ] },
+  { "id": "shinelip", "type": "lipstick", "name": "Shine Lipstick", "finish": "Shine", "price": 25, "shades": [
+    { "name": "Sheer Rose", "code": "SH01", "hex": "#D48A90" }, { "name": "Sheer Coral", "code": "SH02", "hex": "#EE8570" },
+    { "name": "Sheer Berry", "code": "SH03", "hex": "#9C4468" }, { "name": "Sheer Red", "code": "SH04", "hex": "#C83B4E" },
+    { "name": "Sheer Nude", "code": "SH05", "hex": "#C9968A" } ] },
+  { "id": "liptint", "type": "lipstick", "name": "Lip Tint", "finish": "Stain", "price": 18, "shades": [
+    { "name": "Cherry Tint", "code": "LT01", "hex": "#C42B4A" }, { "name": "Peach Tint", "code": "LT02", "hex": "#EE8A6E" },
+    { "name": "Rose Tint", "code": "LT03", "hex": "#D66E84" }, { "name": "Berry Tint", "code": "LT04", "hex": "#8C3A63" } ] },
+  { "id": "metallip", "type": "lipstick", "name": "Metallic Lipstick", "finish": "Metallic", "price": 26, "shades": [
+    { "name": "Rose Metal", "code": "ML01", "hex": "#C57A8C", "metallic": true }, { "name": "Bronze", "code": "ML02", "hex": "#A8683F", "metallic": true },
+    { "name": "Champagne", "code": "ML03", "hex": "#D9B48F", "metallic": true }, { "name": "Copper", "code": "ML04", "hex": "#B5602F", "metallic": true } ] },
+  { "id": "lipbalm", "type": "lipstick", "name": "Tinted Lip Balm", "finish": "Balm", "price": 14, "shades": [
+    { "name": "Rose Balm", "code": "TB01", "hex": "#D48F92" }, { "name": "Peach Balm", "code": "TB02", "hex": "#E99C86" },
+    { "name": "Berry Balm", "code": "TB03", "hex": "#B36B80" }, { "name": "Cherry Balm", "code": "TB04", "hex": "#C85A6C" } ] },
+
+  { "id": "matteshadow", "type": "shadow", "name": "Matte Single Shadow", "finish": "Matte", "price": 18, "shades": [
+    { "name": "Mauve", "code": "MS01", "hex": "#B98599" }, { "name": "Smoky Grey", "code": "MS02", "hex": "#6D6772" },
+    { "name": "Plum", "code": "MS03", "hex": "#5C2E4D" }, { "name": "Navy", "code": "MS04", "hex": "#1F2A5A" },
+    { "name": "Warm Taupe", "code": "MS05", "hex": "#A98C79" }, { "name": "Terracotta", "code": "MS06", "hex": "#B86A4E" } ] },
+  { "id": "shimmershadow", "type": "shadow", "name": "Shimmer Single Shadow", "finish": "Shimmer", "price": 18, "shades": [
+    { "name": "Champagne", "code": "SS01", "hex": "#E8C9A6" }, { "name": "Bronze", "code": "SS02", "hex": "#A86A3E" },
+    { "name": "Emerald", "code": "SS03", "hex": "#2F6B4F" }, { "name": "Rose Gold", "code": "SS04", "hex": "#D49A86" },
+    { "name": "Copper", "code": "SS05", "hex": "#B5622F" }, { "name": "Pewter", "code": "SS06", "hex": "#8A8A94" } ] },
+  { "id": "creamshadow", "type": "shadow", "name": "Cream Shadow Stick", "finish": "Cream", "price": 20, "shades": [
+    { "name": "Sand", "code": "CS01", "hex": "#D9B594" }, { "name": "Bronze", "code": "CS02", "hex": "#9E6640" },
+    { "name": "Rosé", "code": "CS03", "hex": "#C98E97" }, { "name": "Olive", "code": "CS04", "hex": "#6F7A4C" },
+    { "name": "Cocoa", "code": "CS05", "hex": "#6B4636" } ] },
+  { "id": "glitter", "type": "shadow", "name": "Glitter Topper", "finish": "Glitter", "price": 17, "shades": [
+    { "name": "Gold", "code": "GT01", "hex": "#E6C36A" }, { "name": "Silver", "code": "GT02", "hex": "#C9CCD3" },
+    { "name": "Rose", "code": "GT03", "hex": "#E39AAB" }, { "name": "Amethyst", "code": "GT04", "hex": "#9A6BB5" } ] },
+
+  { "id": "liquidliner", "type": "liner", "name": "Liquid Liner Pen", "finish": "Liquid", "price": 19,
+    "defaults": { "thick": "Classic", "wing": "Winged", "lower": "Off" }, "shades": [
+    { "name": "Black", "code": "LP01", "hex": "#16110F" }, { "name": "Brown", "code": "LP02", "hex": "#4A3328" },
+    { "name": "Navy", "code": "LP03", "hex": "#1F2A5A" }, { "name": "Plum", "code": "LP04", "hex": "#5C2E4D" } ] },
+  { "id": "gelliner", "type": "liner", "name": "Gel Pencil Liner", "finish": "Gel pencil", "price": 17,
+    "defaults": { "thick": "Classic", "wing": "None", "lower": "Off" }, "shades": [
+    { "name": "Black", "code": "GP01", "hex": "#16110F" }, { "name": "Brown", "code": "GP02", "hex": "#4A3328" },
+    { "name": "Navy", "code": "GP03", "hex": "#1F2A5A" }, { "name": "Emerald", "code": "GP04", "hex": "#2F6B4F" },
+    { "name": "Plum", "code": "GP05", "hex": "#5C2E4D" }, { "name": "Bronze", "code": "GP06", "hex": "#8E5A2E" } ] },
+  { "id": "kajal", "type": "liner", "name": "Kohl Kajal", "finish": "Kajal", "price": 14,
+    "defaults": { "thick": "Bold", "wing": "None", "lower": "On" }, "shades": [
+    { "name": "Black", "code": "KJ01", "hex": "#0E0B0A" }, { "name": "Brown", "code": "KJ02", "hex": "#3E2A20" },
+    { "name": "Blue", "code": "KJ03", "hex": "#1C3A7A" } ] },
+  { "id": "glitterliner", "type": "liner", "name": "Glitter Liner", "finish": "Glitter", "price": 18,
+    "defaults": { "thick": "Thin", "wing": "None", "lower": "Off" }, "shades": [
+    { "name": "Gold", "code": "GL01", "hex": "#D9B25A" }, { "name": "Silver", "code": "GL02", "hex": "#C9CCD3" },
+    { "name": "Rose Gold", "code": "GL03", "hex": "#D9A08F" }, { "name": "Emerald Sparkle", "code": "GL04", "hex": "#4A8A6A" } ] },
+
+  { "id": "volmascara", "type": "mascara", "name": "Volume Mascara", "finish": "Volumising", "price": 21,
+    "defaults": { "coats": "2", "lower": "On" }, "shades": [
+    { "name": "Black", "code": "VMS01", "hex": "#16110F", "lash": { "style": "Volume", "count": 9, "len": 8, "w": 1.5 } },
+    { "name": "Brown", "code": "VMS02", "hex": "#4A3328", "lash": { "style": "Volume", "count": 9, "len": 8, "w": 1.5 } },
+    { "name": "Waterproof Black", "code": "VMS03", "hex": "#0E0B0A", "lash": { "style": "Waterproof", "count": 9, "len": 8, "w": 1.5 } },
+    { "name": "Intense Black", "code": "VMS04", "hex": "#050404", "lash": { "style": "Intense", "count": 11, "len": 8.5, "w": 1.7 } } ] },
+  { "id": "lengthmascara", "type": "mascara", "name": "Lengthening Mascara", "finish": "Lengthening", "price": 21,
+    "defaults": { "coats": "1", "lower": "On" }, "shades": [
+    { "name": "Black", "code": "LMS01", "hex": "#16110F", "lash": { "style": "Length", "count": 8, "len": 10.5, "w": 1.1 } },
+    { "name": "Brown", "code": "LMS02", "hex": "#4A3328", "lash": { "style": "Length", "count": 8, "len": 10.5, "w": 1.1 } },
+    { "name": "Navy", "code": "LMS03", "hex": "#1F2A5A", "lash": { "style": "Length", "count": 8, "len": 10.5, "w": 1.1 } } ] },
+  { "id": "curlmascara", "type": "mascara", "name": "Curling Mascara", "finish": "Curling", "price": 22,
+    "defaults": { "coats": "1", "lower": "Off" }, "shades": [
+    { "name": "Black", "code": "CMS01", "hex": "#16110F", "lash": { "style": "Curl", "count": 8, "len": 8.5, "w": 1.2, "curl": true } },
+    { "name": "Brown", "code": "CMS02", "hex": "#4A3328", "lash": { "style": "Curl", "count": 8, "len": 8.5, "w": 1.2, "curl": true } } ] },
+
+  { "id": "powderblush", "type": "blush", "name": "Powder Blush", "finish": "Matte · apple of the cheek", "price": 28, "shades": [
+    { "name": "Peach", "code": "PB01", "hex": "#F2A07B" }, { "name": "Rose", "code": "PB02", "hex": "#E27A8F" },
+    { "name": "Berry", "code": "PB03", "hex": "#C9527A" }, { "name": "Mauve", "code": "PB04", "hex": "#C48CA1" },
+    { "name": "Coral", "code": "PB05", "hex": "#F0846A" }, { "name": "Soft Pink", "code": "PB06", "hex": "#EFA6B7" } ] },
+  { "id": "creamblush", "type": "blush", "name": "Cream Blush", "finish": "Dewy · apple of the cheek", "price": 30, "shades": [
+    { "name": "Peach Cream", "code": "CB01", "hex": "#F0A084" }, { "name": "Rose Cream", "code": "CB02", "hex": "#E0808F" },
+    { "name": "Plum Cream", "code": "CB03", "hex": "#B5607A" }, { "name": "Nude Cream", "code": "CB04", "hex": "#D89A88" },
+    { "name": "Tangerine", "code": "CB05", "hex": "#EF8A64" } ] },
+  { "id": "liquidblush", "type": "blush", "name": "Liquid Blush", "finish": "Draped", "price": 26, "shades": [
+    { "name": "Coral", "code": "LB01", "hex": "#F0846A" }, { "name": "Terracotta", "code": "LB02", "hex": "#D07A5A" },
+    { "name": "Pink Drape", "code": "LB03", "hex": "#E9A2B4" }, { "name": "Plum Drape", "code": "LB04", "hex": "#B4667F" },
+    { "name": "Peach Drape", "code": "LB05", "hex": "#F3A98A" } ] },
+  { "id": "blushstick", "type": "blush", "name": "Blush Stick", "finish": "Cream · draped", "price": 27, "shades": [
+    { "name": "Rosy", "code": "BS01", "hex": "#E48597" }, { "name": "Sunset", "code": "BS02", "hex": "#EA8663" },
+    { "name": "Berry", "code": "BS03", "hex": "#C25A78" }, { "name": "Nude Rose", "code": "BS04", "hex": "#D3968F" } ] }
+]

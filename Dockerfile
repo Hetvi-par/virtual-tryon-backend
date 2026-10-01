@@ -10,6 +10,8 @@ COPY requirements.txt .
 RUN pip install -r requirements.txt
 
 COPY *.py ./
+COPY data/ data/
+COPY scripts/ scripts/
 
 RUN useradd --create-home app
 USER app

@@ -20,6 +20,7 @@ class ShadeOut(BaseModel):
     code: str
     hex: str
     metallic: bool = False
+    lash: dict | None = None
 
     model_config = {"from_attributes": True}
 
@@ -30,6 +31,7 @@ class ProductOut(BaseModel):
     name: str
     finish: str
     price: float
+    defaults: dict[str, str] | None = None
     shades: list[ShadeOut]
 
     model_config = {"from_attributes": True}
@@ -47,6 +49,7 @@ class ShadeIn(BaseModel):
     code: str
     hex: str
     metallic: bool = False
+    lash: dict | None = None
 
     @field_validator("hex")
     @classmethod
@@ -89,7 +92,7 @@ def add_shade(slug: str, body: ShadeIn, db: Session = Depends(get_db)):
     product = db.scalar(select(Product).where(Product.slug == slug))
     if not product:
         raise HTTPException(404, f"Unknown product '{slug}'")
-    shade = Shade(product=product, name=body.name, code=body.code, hex=body.hex, metallic=body.metallic, sort=len(product.shades))
+    shade = Shade(product=product, name=body.name, code=body.code, hex=body.hex, metallic=body.metallic, lash=body.lash, sort=len(product.shades))
     db.add(shade)
     db.commit()
     return shade

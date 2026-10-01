@@ -1,7 +1,7 @@
 import os
 
 from dotenv import load_dotenv
-from sqlalchemy import Boolean, ForeignKey, Integer, Numeric, String, create_engine
+from sqlalchemy import JSON, Boolean, ForeignKey, Integer, Numeric, String, create_engine
 from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column, relationship, sessionmaker
 
 load_dotenv()
@@ -21,10 +21,11 @@ class Product(Base):
 
     id: Mapped[int] = mapped_column(Integer, primary_key=True)
     slug: Mapped[str] = mapped_column(String(64), unique=True)        # "velvet", "powderblush", ...
-    type: Mapped[str] = mapped_column(String(16))                     # "lipstick" | "shadow" | "blush"
+    type: Mapped[str] = mapped_column(String(16))                     # "lipstick" | "shadow" | "liner" | "mascara" | "blush"
     name: Mapped[str] = mapped_column(String(128))
     finish: Mapped[str] = mapped_column(String(64))                   # "Matte", "Satin", "Dewy · apple of the cheek", ...
     price: Mapped[float] = mapped_column(Numeric(8, 2, asdecimal=False))
+    defaults: Mapped[dict | None] = mapped_column(JSON, nullable=True)   # starting option values, e.g. {"wing": "Winged"}
     sort: Mapped[int] = mapped_column(Integer, default=0)
 
     shades: Mapped[list["Shade"]] = relationship(
@@ -41,6 +42,7 @@ class Shade(Base):
     code: Mapped[str] = mapped_column(String(16))
     hex: Mapped[str] = mapped_column(String(7))
     metallic: Mapped[bool] = mapped_column(Boolean, default=False)
+    lash: Mapped[dict | None] = mapped_column(JSON, nullable=True)       # mascara look: style, count, len, w, curl
     sort: Mapped[int] = mapped_column(Integer, default=0)
 
     product: Mapped[Product] = relationship(back_populates="shades")

@@ -28,9 +28,11 @@ def seed(reset: bool = False):
         if db.scalar(select(Product).limit(1)) is None:
             for sort, p in enumerate(json.loads(CATALOG.read_text(encoding="utf-8"))):
                 db.add(Product(
-                    slug=p["id"], type=p["type"], name=p["name"], finish=p["finish"], price=p["price"], sort=sort,
+                    slug=p["id"], type=p["type"], name=p["name"], finish=p["finish"], price=p["price"],
+                    defaults=p.get("defaults"), sort=sort,
                     shades=[
-                        Shade(name=s["name"], code=s["code"], hex=s["hex"].lower(), metallic=s.get("metallic", False), sort=i)
+                        Shade(name=s["name"], code=s["code"], hex=s["hex"].lower(), metallic=s.get("metallic", False),
+                              lash=s.get("lash"), sort=i)
                         for i, s in enumerate(p["shades"])
                     ],
                 ))

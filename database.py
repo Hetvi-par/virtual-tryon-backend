@@ -1,7 +1,7 @@
 import os
 
 from dotenv import load_dotenv
-from sqlalchemy import Float, ForeignKey, Integer, String, create_engine
+from sqlalchemy import Boolean, ForeignKey, Integer, Numeric, String, create_engine
 from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column, relationship, sessionmaker
 
 load_dotenv()
@@ -20,11 +20,11 @@ class Product(Base):
     __tablename__ = "products"
 
     id: Mapped[int] = mapped_column(Integer, primary_key=True)
-    key: Mapped[str] = mapped_column(String(32), unique=True)        # "lips" | "blush" | "eye"
-    label: Mapped[str] = mapped_column(String(64))
-    color: Mapped[str] = mapped_column(String(7))                     # default shade hex
-    opacity: Mapped[float] = mapped_column(Float, default=0.8)
-    finish: Mapped[str | None] = mapped_column(String(16), nullable=True)   # only lips have a finish
+    slug: Mapped[str] = mapped_column(String(64), unique=True)        # "velvet", "powderblush", ...
+    type: Mapped[str] = mapped_column(String(16))                     # "lipstick" | "shadow" | "blush"
+    name: Mapped[str] = mapped_column(String(128))
+    finish: Mapped[str] = mapped_column(String(64))                   # "Matte", "Satin", "Dewy · apple of the cheek", ...
+    price: Mapped[float] = mapped_column(Numeric(8, 2, asdecimal=False))
     sort: Mapped[int] = mapped_column(Integer, default=0)
 
     shades: Mapped[list["Shade"]] = relationship(
@@ -38,8 +38,9 @@ class Shade(Base):
     id: Mapped[int] = mapped_column(Integer, primary_key=True)
     product_id: Mapped[int] = mapped_column(ForeignKey("products.id", ondelete="CASCADE"))
     name: Mapped[str] = mapped_column(String(64))
+    code: Mapped[str] = mapped_column(String(16))
     hex: Mapped[str] = mapped_column(String(7))
-    sku: Mapped[str | None] = mapped_column(String(64), nullable=True)
+    metallic: Mapped[bool] = mapped_column(Boolean, default=False)
     sort: Mapped[int] = mapped_column(Integer, default=0)
 
     product: Mapped[Product] = relationship(back_populates="shades")

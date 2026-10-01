@@ -1,35 +1,38 @@
-"""Fill an empty database with the starter catalog. Safe to run more than once."""
+"""Fill an empty database with the starter catalog. Safe to run more than once.
+
+The catalog comes from frontend/public/catalog.json, the same file the frontend falls back to
+when the API is down (override with CATALOG_PATH). Run with --reset to drop and recreate all tables first.
+"""
+
+import json
+import os
+import sys
+from pathlib import Path
 
 from sqlalchemy import select
 
-from database import ModelPhoto, Product, SessionLocal, Shade, init_db
+from database import Base, ModelPhoto, Product, SessionLocal, Shade, engine, init_db
 
-PRODUCTS = [
-    ("lips", "lipstick", "#b3122f", 0.8, "matte", [
-        ("Rose nude", "#c4787f"), ("Classic red", "#b3122f"), ("Berry", "#7d1f4b"), ("Coral", "#e0644f"),
-        ("Plum", "#5e1a3c"), ("Mauve", "#a05a7a"), ("Brick", "#9a3b2c"), ("Hot pink", "#d81b78"),
-    ]),
-    ("blush", "blush", "#e88a99", 0.5, None, [
-        ("Peach", "#f2a58e"), ("Rose", "#e88a99"), ("Coral", "#ee7a6a"), ("Berry", "#b8506e"),
-        ("Soft pink", "#f4b6c2"), ("Terracotta", "#c8705a"), ("Mauve", "#b56b8a"), ("Plum", "#8e3f62"),
-    ]),
-    ("eye", "eyeshadow", "#6d3a66", 0.6, None, [
-        ("Taupe", "#8a6a5c"), ("Plum", "#6d3a66"), ("Bronze", "#a0693a"), ("Navy", "#2d3f73"),
-        ("Rose gold", "#c98a7c"), ("Olive", "#6b6b3a"), ("Smoky", "#3a3440"), ("Lilac", "#9a7cc0"),
-    ]),
-]
-
+CATALOG = Path(os.getenv(
+    "CATALOG_PATH", Path(__file__).resolve().parent.parent / "frontend" / "public" / "catalog.json"
+))
 MODEL_PHOTOS = [(f"Model {i}", f"/models/model{i}.jpg") for i in range(1, 7)]
 
 
-def seed():
+def seed(reset: bool = False):
+    if reset:
+        Base.metadata.drop_all(engine)
+        print("Dropped all tables")
     init_db()
     with SessionLocal() as db:
         if db.scalar(select(Product).limit(1)) is None:
-            for sort, (key, label, color, opacity, finish, shades) in enumerate(PRODUCTS):
+            for sort, p in enumerate(json.loads(CATALOG.read_text(encoding="utf-8"))):
                 db.add(Product(
-                    key=key, label=label, color=color, opacity=opacity, finish=finish, sort=sort,
-                    shades=[Shade(name=n, hex=h, sort=i) for i, (n, h) in enumerate(shades)],
+                    slug=p["id"], type=p["type"], name=p["name"], finish=p["finish"], price=p["price"], sort=sort,
+                    shades=[
+                        Shade(name=s["name"], code=s["code"], hex=s["hex"].lower(), metallic=s.get("metallic", False), sort=i)
+                        for i, s in enumerate(p["shades"])
+                    ],
                 ))
             print("Seeded products and shades")
         if db.scalar(select(ModelPhoto).limit(1)) is None:
@@ -39,4 +42,4 @@ def seed():
 
 
 if __name__ == "__main__":
-    seed()
+    seed(reset="--reset" in sys.argv)

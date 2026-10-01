@@ -4,7 +4,7 @@ from contextlib import asynccontextmanager
 
 from fastapi import Depends, FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
-from pydantic import BaseModel, field_validator
+from pydantic import BaseModel, Field, field_validator
 from sqlalchemy import select
 from sqlalchemy.orm import Session, selectinload
 
@@ -17,18 +17,19 @@ HEX = re.compile(r"^#[0-9a-fA-F]{6}$")
 class ShadeOut(BaseModel):
     id: int
     name: str
+    code: str
     hex: str
-    sku: str | None = None
+    metallic: bool = False
 
     model_config = {"from_attributes": True}
 
 
 class ProductOut(BaseModel):
-    key: str
-    label: str
-    color: str
-    opacity: float
-    finish: str | None
+    id: str = Field(validation_alias="slug")
+    type: str
+    name: str
+    finish: str
+    price: float
     shades: list[ShadeOut]
 
     model_config = {"from_attributes": True}
@@ -43,8 +44,9 @@ class ModelPhotoOut(BaseModel):
 
 class ShadeIn(BaseModel):
     name: str
+    code: str
     hex: str
-    sku: str | None = None
+    metallic: bool = False
 
     @field_validator("hex")
     @classmethod
@@ -82,12 +84,12 @@ def list_products(db: Session = Depends(get_db)):
     return db.scalars(stmt).all()
 
 
-@app.post("/api/products/{key}/shades", response_model=ShadeOut, status_code=201)
-def add_shade(key: str, body: ShadeIn, db: Session = Depends(get_db)):
-    product = db.scalar(select(Product).where(Product.key == key))
+@app.post("/api/products/{slug}/shades", response_model=ShadeOut, status_code=201)
+def add_shade(slug: str, body: ShadeIn, db: Session = Depends(get_db)):
+    product = db.scalar(select(Product).where(Product.slug == slug))
     if not product:
-        raise HTTPException(404, f"Unknown product '{key}'")
-    shade = Shade(product=product, name=body.name, hex=body.hex, sku=body.sku, sort=len(product.shades))
+        raise HTTPException(404, f"Unknown product '{slug}'")
+    shade = Shade(product=product, name=body.name, code=body.code, hex=body.hex, metallic=body.metallic, sort=len(product.shades))
     db.add(shade)
     db.commit()
     return shade
